@@ -30,7 +30,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
 @RequestMapping("/user")
 @RestController
-@CrossOrigin(origins = "https://domainofchain.s3.us-east-2.amazonaws.com")
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/"})
 public class UserRestController {
 
 @Autowired
