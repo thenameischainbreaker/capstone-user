@@ -3,6 +3,13 @@ package com.example.capstoneuser.dto;
 import com.example.capstoneuser.entity.Admin;
 
 public class UserMetaData {
+	@Override
+	public String toString() {
+		return "UserMetaData [userId=" + userId + ", role=" + role + ", email=" + email + ", name=" + name
+				+ ", balance=" + balance + ", profile_picture=" + profile_picture + ", message=" + message
+				+ ", emailVerified=" + emailVerified + "]";
+	}
+
 	private int userId;
 	private Admin role;
 	private String email;

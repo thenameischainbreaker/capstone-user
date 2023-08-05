@@ -26,11 +26,12 @@ import com.example.capstoneuser.service.UserService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.gson.Gson;
 
 
 @RequestMapping("/user")
 @RestController
-@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/"})
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/","https://capstone-angular-jj.s3.us-east-2.amazonaws.com"})
 public class UserRestController {
 
 @Autowired
@@ -63,27 +64,28 @@ UserService userService;
 }
 
 @PostMapping("/createUser")
-public UserMetaData createUser(@RequestBody String token) {
+public String createUser(@RequestBody String token) {
+	Gson gson = new Gson();
 	try {
-		return userService.createUser(token);
+		return gson.toJson(userService.createUser(token));
 	} catch (GeneralSecurityException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		UserMetaData newUserMetaData = new UserMetaData();
 		newUserMetaData.setMessage("e.message");
-		return newUserMetaData;
+		return gson.toJson(newUserMetaData);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		UserMetaData newUserMetaData = new UserMetaData();
 		newUserMetaData.setMessage("e.message");
-		return newUserMetaData;
+		return gson.toJson(newUserMetaData);
 	} catch (userAlreadyCreatedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		UserMetaData newUserMetaData = new UserMetaData();
 		newUserMetaData.setMessage("e.message");
-		return newUserMetaData;
+		return gson.toJson(newUserMetaData);
 	}
 }
 
